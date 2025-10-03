@@ -52,6 +52,201 @@
         height: 40px;
         width: auto;
       }
+
+      .artesanos {
+        margin: 20px auto 60px;
+        width: min(95%, 1365px);
+        display: flex;
+        flex-direction: column;
+        gap: 23px;
+        color: #000;
+      }
+
+      .artesanos-title {
+        font-size: clamp(1.6rem, 3vw, 2.1rem);
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 8px;
+      }
+
+      .artesano-item {
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0px 3px 8px 0px #264653;
+        display: flex;
+        gap: 25px;
+        padding: 28px;
+        align-items: center;
+      }
+
+      .artesano-media {
+        flex: 0 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .artesano-media img {
+        width: clamp(160px, 22vw, 250px);
+        height: clamp(160px, 22vw, 200px);
+        object-fit: contain;
+        display: block;
+        border-radius: 12px;
+      }
+
+      .artesano-info {
+        flex: 1 1 auto;
+      }
+
+      .artesano-info h3 {
+        font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .artesano-info p {
+        margin: 0;
+        font-size: 1.2rem;
+        line-height: 1.55;
+        color: #2f2f2f;
+      }
+
+      .artesano-actions {
+        margin-top: 1rem;
+      }
+
+      .artesano-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #c6a15b;
+        color: #fff;
+        padding: 10px 26px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.2s ease;
+      }
+
+      .artesano-btn:hover {
+        background-color: #264653;
+        color: #fff;
+      }
+
+      .buscador {
+        margin: 40px auto;
+        width: min(95%, 1400px);
+        background-color: white;
+        box-shadow: 0px 3px 8px 0px rgba(38, 70, 83, 0.3);
+        border-radius: 12px;
+        padding: 24px;
+        color: #000;
+      }
+
+      .buscador .form-label {
+        font-weight: 600;
+        color: #000;
+      }
+
+      .buscador .form-control,
+      .buscador .form-select {
+        border-color: rgba(38, 70, 83, 0.3);
+      }
+
+      .buscador .form-control:focus,
+      .buscador .form-select:focus {
+        border-color: #264653;
+        box-shadow: 0 0 0 0.2rem rgba(38, 70, 83, 0.25);
+      }
+
+      .botonS {
+        background-color: #000;
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        width: 100%;
+      }
+
+      .botonS:hover {
+        background-color: #444;
+        color: #fff;
+      }
+
+      @media (max-width: 768px) {
+        .buscador {
+          padding: 20px;
+        }
+
+        .artesano-item {
+          flex-direction: column;
+          text-align: center;
+          gap: 18px;
+        }
+
+        .artesano-info {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .botonS {
+          margin-top: 8px;
+        }
+
+        .artesano-item {
+          padding: 22px;
+        }
+
+        .artesano-media img {
+          width: 150px;
+          height: 150px;
+        }
+      }
+
+      .footer {
+        background-color: #1f1f1f;
+        color: #f8f3e9;
+        border-top: 4px solid #f4a261;
+      }
+
+      .footer a {
+        color: #f8f3e9;
+        text-decoration: none;
+      }
+
+      .footer a:hover {
+        color: #e9c46a;
+      }
+
+      .footer-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+      }
+
+      .footer-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-list li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        font-size: 0.9rem;
+      }
     </style>
   </head>
   <body>
@@ -74,7 +269,9 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+              <a class="nav-link active" aria-current="page" href="index.html"
+                >Inicio</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Artesanos</a>
@@ -106,30 +303,213 @@
       </div>
     </nav>
 
-    <div class="artesanos">
-      <h1 style="text-align: center; color: black; margin-top: 20px">
-        Artesanos Destacados
-      </h1>
-      <div
-        class="container"
-        style="margin-top: 40px; margin-bottom: 40px; color: black"
-      >
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col">
-            <div class="card h-100">
-              <img
-                src="artesano1.1.svg"
-                class="card-img-top"
-                alt="Artesano 1"
-              />
-              <div class="card-body">
-                <h5 class="card-title">Juan Pérez</h5>
-                <p class="card-text">
-                  Especialista en cerámica tradicional mexicana con más de 20
-                  años de experiencia.
-                </p>
-              </div>  
-    </div>
+    <form class="buscador" role="search">
+      <div class="row g-3 align-items-end">
+        <div class="col-lg-4">
+          <label for="search-artesanos" class="form-label"
+            >Buscar artesano</label
+          >
+          <input
+            class="form-control"
+            id="search-artesanos"
+            type="search"
+            placeholder="Nombre del artesano"
+            aria-label="Buscar artesano"
+          />
+        </div>
+        <div class="col-sm-6 col-lg-2">
+          <label for="filter-region" class="form-label">Región</label>
+          <select
+            class="form-select"
+            id="filter-region"
+            aria-label="Filtrar por región"
+          >
+            <option selected disabled>Selecciona región</option>
+            <option value="istmo">Montaña</option>
+            <option value="costa">Costa</option>
+            <option value="sierra">Sierra</option>
+            <option value="mixteca">Mixteca</option>
+          </select>
+        </div>
+        <div class="col-sm-6 col-lg-2">
+          <label for="filter-estado" class="form-label">Estado</label>
+          <select
+            class="form-select"
+            id="filter-estado"
+            aria-label="Filtrar por estado"
+          >
+            <option selected disabled>Selecciona estado</option>
+            <option value="oaxaca">Oaxaca</option>
+            <option value="puebla">Puebla</option>
+            <option value="chiapas">Chiapas</option>
+            <option value="cdmx">Ciudad de México</option>
+          </select>
+        </div>
+        <div class="col-sm-6 col-lg-2">
+          <label for="filter-municipio" class="form-label">Municipio</label>
+          <select
+            class="form-select"
+            id="filter-municipio"
+            aria-label="Filtrar por municipio"
+          >
+            <option selected disabled>Selecciona municipio</option>
+            <option value="ocotlan">Ocotlán de Morelos</option>
+            <option value="tilcajete">San Martín Tilcajete</option>
+            <option value="teotitlan">Teotitlán del Valle</option>
+            <option value="huatulco">Santa María Huatulco</option>
+          </select>
+        </div>
+        <div class="col-sm-6 col-lg-2">
+          <button class="botonS" type="submit">Aplicar filtros</button>
+        </div>
+      </div>
+    </form>
+
+    <section class="artesanos">
+      <article class="artesano-item">
+        <div class="artesano-media">
+          <img src="artesano2.svg" alt="Retrato de Lupita Hernández" />
+        </div>
+        <div class="artesano-info">
+          <h3>Mariano Hernández</h3>
+          <p>
+            Maestra del barro negro de San Bartolo Coyotepec. Cada pieza se
+            bruñe a mano para lograr su característico brillo profundo.
+          </p>
+          <div class="artesano-actions">
+            <a class="artesano-btn" href="#">Ver más</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="artesano-item">
+        <div class="artesano-media">
+          <img src="artesano1.1.svg" alt="Retrato de Martín Cruz" />
+        </div>
+        <div class="artesano-info">
+          <h3>Martín Cruz</h3>
+          <p>
+            Tallador de alebrijes en San Martín Tilcajete que combina pigmentos
+            naturales con diseños contemporáneos.
+          </p>
+          <div class="artesano-actions">
+            <a class="artesano-btn" href="#">Ver más</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="artesano-item">
+        <div class="artesano-media">
+          <img src="artesano3.svg" alt="Retrato de Elena Ramírez" />
+        </div>
+        <div class="artesano-info">
+          <h3>Elena Ramírez</h3>
+          <p>
+            Artesana textil de Teotitlán del Valle. Teje en telar de cintura
+            tapices que narran historias de su comunidad.
+          </p>
+          <div class="artesano-actions">
+            <a class="artesano-btn" href="#">Ver más</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="artesano-item">
+        <div class="artesano-media">
+          <img src="artesano4.svg" alt="Retrato de Diego López" />
+        </div>
+        <div class="artesano-info">
+          <h3>Diego López</h3>
+          <p>
+            Ceramista de Santa María Atzompa especializado en esmaltes plúmbicos
+            libres y formas orgánicas inspiradas en la naturaleza.
+          </p>
+          <div class="artesano-actions">
+            <a class="artesano-btn" href="#">Ver más</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="artesano-item">
+        <div class="artesano-media">
+          <img src="artesano5.svg" alt="Retrato de Saraí Méndez" />
+        </div>
+        <div class="artesano-info">
+          <h3>Saraí Méndez</h3>
+          <p>
+            Joyera de filigrana en plata de Oaxaca de Juárez. Sus piezas
+            minuciosas preservan técnicas familiares centenarias.
+          </p>
+          <div class="artesano-actions">
+            <a class="artesano-btn" href="#">Ver más</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <footer class="footer mt-5">
+      <div class="container py-5">
+        <div class="row gy-4">
+          <div class="col-md-4">
+            <div class="footer-logo">MAYǑ</div>
+            <p class="mt-3">
+              Celebramos el talento de las manos mexicanas con piezas únicas y
+              memorables que cuentan historias de tradición.
+            </p>
+          </div>
+          <div class="col-6 col-md-2">
+            <div class="footer-title">Sitio</div>
+            <ul class="footer-list">
+              <li><a href="#">Inicio</a></li>
+              <li><a href="#">Artesanias</a></li>
+              <li><a href="artesanos.html">Artesanos</a></li>
+              <li><a href="#">Eventos</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="footer-title">Contacto</div>
+            <ul class="footer-list">
+              <li>Tel. 221-945-4166</li>
+              <li>Correo MAYǑ@artesaniasmx.com</li>
+              <li>Ubicación Oaxaca, México</li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <div class="footer-title">Suscríbete</div>
+            <p>Recibe novedades de nuevas piezas y colaboraciones.</p>
+            <form class="row g-2" action="#" method="post">
+              <div class="col-12">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Tu correo"
+                  aria-label="Correo electrónico"
+                />
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-warning w-100">
+                  Suscribirme
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom text-center text-md-start">
+          <div class="row align-items-center g-2">
+            <div class="col-md-6">
+              © <span id="current-year"></span> MAYǑ. Todos los derechos
+              reservados.
+            </div>
+            <div class="col-md-6 text-md-end">
+              <a class="me-3" href="#">Privacidad</a>
+              <a class="me-3" href="#">Términos</a>
+              <a href="#">Soporte</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
