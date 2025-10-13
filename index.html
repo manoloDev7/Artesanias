@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" defer />
     <title>Inicio</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -94,6 +94,7 @@
       }
       .dropdown-item:hover {
         background-color: gray;
+        color: white;
       }
       .navbar-toggler {
         border-color: white;
@@ -166,7 +167,7 @@
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(2, 1fr);
         gap: 1rem;
-        padding: 20px;
+        padding: 12px;
         background-color: rgb(255, 255, 255);
         box-shadow: 0px 3px 8px 0px #264653;
         width: min(95%, 1400px);
@@ -219,7 +220,7 @@
       }
       .div2 {
         display: flex;
-        align-items: center;
+        align-items: flex-end;
       }
       .encabezado {
         align-items: center;
@@ -368,7 +369,8 @@
         margin: 70px 0;
         padding-bottom: 20px;
       }
-      .verMas a{
+      .verMas a,
+      .verMas button{
         text-decoration: none;
         color: black;
         font-size: 1.2rem;
@@ -377,6 +379,15 @@
         padding: 10px 20px;
         border-radius: 5px;
         transition: background-color 0.2s ease, color 0.2s ease;
+      }
+      .verMas button{
+        background-color: transparent;
+        cursor: pointer;
+      }
+      .verMas a:hover,
+      .verMas button:hover{
+        background-color: black;
+        color: white;
       }
     </style>
   </head>
@@ -420,6 +431,7 @@
                 Artesanias
               </a>
               <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="comingSoon.html">Catalogo</a></li>
                 <li><a class="dropdown-item" href="comingSoon.html">Piezas exclusivas</a></li>
                 <li><a class="dropdown-item" href="comingSoon.html">Vasijas</a></li>
                 <li>
@@ -466,7 +478,7 @@
     <div class="parent">
       <div class="div1"><img class="imagen" src="tasarroa.svg" alt="" /></div>
       <div class="div2">
-        <h2 class="titulo">Vasija Barro oscuro oaxaqueńo</h2>
+        <h2 class="titulo">Tasa de barro.</h2>
       </div>
       <div class="div3">
         <p class="texto">
@@ -481,7 +493,7 @@
     <div class="parent">
       <div class="div1"><img class="imagen" src="plato.svg" alt="" /></div>
       <div class="div2">
-        <h2 class="titulo">Vasija Barro oscuro oaxaqueńo</h2>
+        <h2 class="titulo">Plato de barro oaxaqueño.</h2>
       </div>
       <div class="div3">
         <p class="texto">
@@ -496,7 +508,7 @@
     <div class="parent">
       <div class="div1"><img class="imagen" src="calaca.svg" alt="" /></div>
       <div class="div2">
-        <h2 class="titulo">Vasija Barro oscuro oaxaqueńo</h2>
+        <h2 class="titulo">Calabera decorativa "Dia de muertos".</h2>
       </div>
       <div class="div3">
         <p class="texto">
@@ -511,7 +523,7 @@
     <div class="parent">
       <div class="div1"><img class="imagen" src="alebrije1.svg" alt="" /></div>
       <div class="div2">
-        <h2 class="titulo">Vasija Barro oscuro oaxaqueńo</h2>
+        <h2 class="titulo">Tenate decorativo de mesa.</h2>
       </div>
       <div class="div3">
         <p class="texto">
@@ -526,7 +538,7 @@
     <div class="parent">
       <div class="div1"><img class="imagen" src="alebrije2.svg" alt="" /></div>
       <div class="div2">
-        <h2 class="titulo">Vasija Barro oscuro oaxaqueńo</h2>
+        <h2 class="titulo">Alebrije "Dios de la selva".</h2>
       </div>
       <div class="div3">
         <p class="texto">
@@ -539,7 +551,52 @@
       <div class="div4"><a class="cta" href="">Ver mas</a></div>
     </div>
 
-    <div class="verMas"><a href="#">Ver mas</a></div>
+    <div class="verMas">
+      <button id="ver" type="button">Ver mas</button>
+    </div>
+    <div id="extra-products" hidden>
+      <div class="parent">
+        <div class="div1"><img class="imagen" src="alebrije3.svg" alt="Alebrije guardián nocturno" /></div>
+        <div class="div2">
+          <h2 class="titulo">Alebrije guardián nocturno.</h2>
+        </div>
+        <div class="div3">
+          <p class="texto">
+            Esta pieza tallada en copal conserva tonos brillantes que homenajean a la fauna de Oaxaca.
+          </p>
+        </div>
+        <div class="div4"><a class="cta" href="">Ver mas</a></div>
+      </div>
+      <div class="parent">
+        <div class="div1"><img class="imagen" src="alebrije4.svg" alt="Alebrije espíritu del viento" /></div>
+        <div class="div2">
+          <h2 class="titulo">Alebrije espíritu del viento.</h2>
+        </div>
+        <div class="div3">
+          <p class="texto">
+            Pintado a mano con pigmentos naturales para resaltar sus alas y movimiento en cada detalle.
+          </p>
+        </div>
+        <div class="div4"><a class="cta" href="">Ver mas</a></div>
+      </div>
+      <div class="parent">
+        <div class="div1"><img class="imagen" src="calaca.svg" alt="Libretas artesanales bordadas" /></div>
+        <div class="div2">
+          <h2 class="titulo">Libretas artesanales bordadas.</h2>
+        </div>
+        <div class="div3">
+          <p class="texto">
+            Cada libreta combina papel reciclado y bordado tradicional para acompañarte día a día.
+          </p>
+        </div>
+        <div class="div4"><a class="cta" href="">Ver mas</a></div>
+      </div>
+    </div>
+    <div class="verMas" id="ver-artesanias" hidden>
+      <a href="comingSoon.html">Ver artesanias</a>
+    </div>
+    
+    
     <footer class="footer mt-5">
       <div class="container py-5">
         <div class="row gy-4">
@@ -652,6 +709,32 @@
         var yearSpan = document.getElementById("current-year");
         if (yearSpan) {
           yearSpan.textContent = new Date().getFullYear();
+        }
+
+        var verMasButton = document.getElementById("ver");
+        var extraProducts = document.getElementById("extra-products");
+        var verArtesanias = document.getElementById("ver-artesanias");
+
+        if (verMasButton) {
+          verMasButton.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            if (extraProducts) {
+              extraProducts.hidden = false;
+            }
+
+            var verMasWrapper = verMasButton.closest(".verMas");
+            if (verMasWrapper) {
+              verMasWrapper.hidden = true;
+            } else {
+              verMasButton.disabled = true;
+              verMasButton.style.display = "none";
+            }
+
+            if (verArtesanias) {
+              verArtesanias.hidden = false;
+            }
+          });
         }
       });
     </script>

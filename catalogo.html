@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" defer/>
+    <title>Catalogo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        color: white;
+        background-color: #f9f6f1;
+      }
+      /* Estilos del mav bar pero con boostrap */
+      .navbar-nav .nav-link,
+      .navbar-nav .nav-link.active,
+      .navbar-nav .nav-link.show {
+        color: white;
+      }
+      .navbar-nav .nav-link:hover {
+        color: gray;
+      }
+      .dropdown-menu {
+        background-color: black;
+      }
+      .dropdown-item {
+        color: white;
+      }
+      .dropdown-item:hover {
+        background-color: gray;
+        color: white;
+      }
+      .navbar-toggler {
+        border-color: white;
+      }
+      .navbar-toggler-icon {
+        filter: invert(1);
+      }
+      .navbar-brand {
+        color: white;
+      }
+      .navbar-brand:hover {
+        color: gray;
+      }
+      .navbar-brand img {
+        height: 40px;
+        width: auto;
+      }
+      .footer {
+        background-color: #1f1f1f;
+        color: #f8f3e9;
+        border-top: 4px solid #f4a261;
+      }
+
+      .footer a {
+        color: #f8f3e9;
+        text-decoration: none;
+      }
+
+      .footer a:hover {
+        color: #e9c46a;
+      }
+
+      .footer-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+      }
+
+      .footer-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-list li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        font-size: 0.9rem;
+      }
+      .conteTextoBien {
+        background-color: hsl(0, 0%, 10%);
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .textoBienvenida {
+        color: white;
+        font-size: 3rem;
+        text-align: center;
+        padding: 0 20px;
+      }
+        @media (max-width: 768px) {
+            .textoBienvenida {
+            font-size: 1.5rem;
+            }
+        }
+      .catalogo-container {
+        color: #1f1f1f;
+      }
+      .filter-panel {
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 6px 24px rgba(18, 52, 86, 0.08);
+        padding: 24px;
+        margin-top: -60px;
+        position: relative;
+        z-index: 1;
+      }
+      .filter-panel h2 {
+        font-family: "Raleway", sans-serif;
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        margin-bottom: 1rem;
+      }
+      .filter-panel label {
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 0.35rem;
+      }
+      .filter-panel .form-control,
+      .filter-panel .form-select {
+        border-radius: 8px;
+        border-color: #c6a15b;
+      }
+      .filter-panel button {
+        border-radius: 8px;
+      }
+      .catalogo-results {
+        margin-top: 2.5rem;
+      }
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 1.5rem;
+      }
+      .product-card {
+        background-color: hsl(0, 0%, 98%);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 18px hsl(0, 0%, 85%);
+
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .product-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .product-card-body {
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .product-card h3 {
+        font-size: 1.6rem;
+        font-family: "Raleway", sans-serif;
+        margin: 0;
+        color: hsl(0, 0%, 0%);
+      }
+      .badge-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .badge-custom {
+        background-color: hsl(0, 0%, 88%);
+        color: #1f1f1f;
+        border-radius: 0.3em;
+        padding: 0.40rem 0.40rem;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+      .product-card p {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        color: hsl(0, 0%, 40%);
+      }
+      .empty-state {
+        background: rgba(207, 185, 140, 0.2);
+        border: 1px dashed #c6a15b;
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+        font-size: 1rem;
+        margin-top: 2rem;
+      }
+      @media (max-width: 768px) {
+        .filter-panel {
+          padding: 20px;
+        }
+      }
+          
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-black" style="align-items: flex-end">
+      <div class="container-fluid" style="align-items: center">
+        <a class="navbar-brand" href="#">
+          <img src="logo2.svg" alt="Artesanías" title="Logo" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index.html"
+                >Inicio</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="artesanos.html">Artesanos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="comingSoon.html">Prendas</a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="comingSoon.html"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Artesanias
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="comingSoon.html">Catalogo</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="comingSoon.html"
+                    >Piezas exclusivas</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="comingSoon.html">Vasijas</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="comingSoon.html">Tazas</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="conteTextoBien">
+      <h1 class="textoBienvenida">
+        Bienvenido a donde las raices de Mexico salen al mundo!.
+      </h1>
+    </div>
+    <!-- Contenido principal de la página papu.-->   
+    <main class="catalogo-container container pb-5">
+      <section class="filter-panel">
+        <h2>Explora artesanías auténticas</h2>
+        <p class="mb-4">
+          Filtra por nombre, técnica, artesano o región para encontrar la pieza que estás buscando.
+        </p>
+        <form class="row gy-3" id="catalogo-filters">
+          <div class="col-12 col-lg-4">
+            <label for="search-term" class="form-label">Buscar</label>
+            <input
+              id="search-term"
+              type="search"
+              class="form-control"
+              placeholder="Ej. barro negro, alebrije, bordado..."
+            />
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <label for="filter-category" class="form-label">Técnica</label>
+            <select id="filter-category" class="form-select">
+              <option value="all">Todas</option>
+            </select>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <label for="filter-artisan" class="form-label">Artesano</label>
+            <input
+              id="filter-artisan"
+              class="form-control"
+              type="search"
+              placeholder="Escribe el nombre del artesano"
+              list="artisan-options"
+            />
+            <datalist id="artisan-options"></datalist>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-2">
+            <label for="filter-region" class="form-label">Región</label>
+            <select id="filter-region" class="form-select">
+              <option value="all">Todas</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <button id="clear-filters" type="button" class="btn btn-outline-dark">
+              Limpiar filtros
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="catalogo-results">
+        <div id="catalogo-count" class="text-muted mb-3"></div>
+        <div id="catalogo-grid" class="product-grid">
+          <article
+            class="product-card"
+            data-name="Vasija de barro negro"
+            data-category="Cerámica"
+            data-artisan="Doña Eustolia"
+            data-region="Oaxaca"
+            data-description="Herrada en torno tradicional y bruñida con cuarzo para lograr el brillo característico del barro negro de San Bartolo Coyotepec."
+          >
+            <img src="vasija.svg" alt="Vasija de barro negro" />
+            <div class="product-card-body">
+              <h3>Vasija de barro negro</h3>
+              <div class="badge-group">
+                <span class="badge-custom">Cerámica</span>
+                <span class="badge-custom">Doña Eustolia</span>
+                <span class="badge-custom">Oaxaca</span>
+              </div>
+              <p>
+                Herrada en torno tradicional y bruñida con cuarzo para lograr el brillo característico del barro negro de San Bartolo Coyotepec.
+              </p>
+              <strong>$850 MXN</strong>
+            </div>
+          </article>
+          <article
+            class="product-card"
+            data-name="Taza esmaltada rojo pasión"
+            data-category="Cerámica"
+            data-artisan="Colectivo Tonalli"
+            data-region="Jalisco"
+            data-description="Genera contraste con el interior claro y esmaltes libres de plomo, ideal para café de olla o chocolate caliente."
+          >
+            <img src="tasarroa.svg" alt="Taza esmaltada rojo pasión" />
+            <div class="product-card-body">
+              <h3>Taza esmaltada rojo pasión</h3>
+              <div class="badge-group">
+                <span class="badge-custom">Cerámica</span>
+                <span class="badge-custom">Colectivo Tonalli</span>
+                <span class="badge-custom">Jalisco</span>
+              </div>
+              <p>
+                Genera contraste con el interior claro y esmaltes libres de plomo, ideal para café de olla o chocolate caliente.
+              </p>
+              <strong>$320 MXN</strong>
+            </div>
+          </article>
+          <article
+            class="product-card"
+            data-name="Plato ceremonial barro rojo"
+            data-category="Cerámica"
+            data-artisan="Taller Monte Albán"
+            data-region="Oaxaca"
+            data-description="Decorado con motivos zapotecos que representan la cosecha y los ciclos lunares, cada pieza es única."
+          >
+            <img src="plato.svg" alt="Plato ceremonial barro rojo" />
+            <div class="product-card-body">
+              <h3>Plato ceremonial barro rojo</h3>
+              <div class="badge-group">
+                <span class="badge-custom">Cerámica</span>
+                <span class="badge-custom">Taller Monte Albán</span>
+                <span class="badge-custom">Oaxaca</span>
+              </div>
+              <p>
+                Decorado con motivos zapotecos que representan la cosecha y los ciclos lunares, cada pieza es única.
+              </p>
+              <strong>$620 MXN</strong>
+            </div>
+          </article>
+          <article
+            class="product-card"
+            data-name="Calaca decorativa día de muertos"
+            data-category="Escultura"
+            data-artisan="Familia Cruz"
+            data-region="Michoacán"
+            data-description="Tallada a mano en madera de copal y pintada con pigmentos naturales que honran la tradición purépecha."
+          >
+            <img src="calaca.svg" alt="Calaca decorativa día de muertos" />
+            <div class="product-card-body">
+              <h3>Calaca decorativa día de muertos</h3>
+              <div class="badge-group">
+                <span class="badge-custom">Escultura</span>
+                <span class="badge-custom">Familia Cruz</span>
+                <span class="badge-custom">Michoacán</span>
+              </div>
+              <p>
+                Tallada a mano en madera de copal y pintada con pigmentos naturales que honran la tradición purépecha.
+              </p>
+              <strong>$980 MXN</strong>
+            </div>
+          </article>
+          <article
+            class="product-card"
+            data-name="Alebrije espíritu de la selva"
+            data-category="Alebrije"
+            data-artisan="Juana Bautista"
+            data-region="Oaxaca"
+            data-description="Colores vibrantes y detalles minuciosos representan a un jaguar que protege a la comunidad."
+          >
+            <img src="alebrije2.svg" alt="Alebrije espíritu de la selva" />
+            <div class="product-card-body">
+              <h3>Alebrije espíritu de la selva</h3>
+              <div class="badge-group">
+                <span class="badge-custom">Alebrije</span>
+                <span class="badge-custom">Juana Bautista</span>
+                <span class="badge-custom">Oaxaca</span>
+              </div>
+              <p>
+                Colores vibrantes y detalles minuciosos representan a un jaguar que protege a la comunidad.
+              </p>
+              <strong>$1,450 MXN</strong>
+            </div>
+          </article>
+          <article
+            class="product-card"
+            data-name="Alebrije guardián nocturno"
+            data-category="Alebrije"
+            data-artisan="Juana Bautista"
+            data-region="Oaxaca"
+            data-description="Sus alas y plumajes simbolizan los sueños y la imaginación, elaborado con madera sustentable."
+          >
+            <img src="alebrije3.svg" alt="Alebrije guardián nocturno" />
+            <div class="product-card-body">
+              <h3>Alebrije guardián nocturno</h3>
+              <div class="badge-group">
+                <span class="badge-custom">Alebrije</span>
+                <span class="badge-custom">Juana Bautista</span>
+                <span class="badge-custom">Oaxaca</span>
+              </div>
+              <p>
+                Sus alas y plumajes simbolizan los sueños y la imaginación, elaborado con madera sustentable.
+              </p>
+              <strong>$1,250 MXN</strong>
+            </div>
+          </article>
+          <article
+            class="product-card"
+            data-name="Libreta bordada hilos de neblina"
+            data-category="Textil"
+            data-artisan="Cooperativa Nube Alta"
+            data-region="Chiapas"
+            data-description="Portada en telar de cintura con bordados de rombos tzotziles, perfecta para tus notas o bocetos."
+          >
+            <img src="libretas.svg" alt="Libreta bordada hilos de neblina" />
+            <div class="product-card-body">
+              <h3>Libreta bordada hilos de neblina</h3>
+              <div class="badge-group">
+                <span class="badge-custom">Textil</span>
+                <span class="badge-custom">Cooperativa Nube Alta</span>
+                <span class="badge-custom">Chiapas</span>
+              </div>
+              <p>
+                Portada en telar de cintura con bordados de rombos tzotziles, perfecta para tus notas o bocetos.
+              </p>
+              <strong>$280 MXN</strong>
+            </div>
+          </article>
+          <article
+            class="product-card"
+            data-name="Bolsa de palma tejida"
+            data-category="Fibras naturales"
+            data-artisan="Maestro Hilario"
+            data-region="Guerrero"
+            data-description="Tejido a mano con palma real y teñido con tintes vegetales para un acabado cálido y resistente."
+          >
+            <img src="lala.svg" alt="Bolsa de palma tejida" />
+            <div class="product-card-body">
+              <h3>Bolsa de palma tejida</h3>
+              <div class="badge-group">
+                <span class="badge-custom">Fibras naturales</span>
+                <span class="badge-custom">Maestro Hilario</span>
+                <span class="badge-custom">Guerrero</span>
+              </div>
+              <p>
+                Tejido a mano con palma real y teñido con tintes vegetales para un acabado cálido y resistente.
+              </p>
+              <strong>$540 MXN</strong>
+            </div>
+          </article>
+          <article
+            class="product-card"
+            data-name="Mandil bordado flor de mayo"
+            data-category="Textil"
+            data-artisan="Doña Eustolia"
+            data-region="Puebla"
+            data-description="Bordado con hilo de algodón y motivos florales inspirados en los campos de cultivo de la sierra norte."
+          >
+            <img src="artesano3.svg" alt="Mandil bordado flor de mayo" />
+            <div class="product-card-body">
+              <h3>Mandil bordado flor de mayo</h3>
+              <div class="badge-group">
+                <span class="badge-custom">Textil</span>
+                <span class="badge-custom">Doña Eustolia</span>
+                <span class="badge-custom">Puebla</span>
+              </div>
+              <p>
+                Bordado con hilo de algodón y motivos florales inspirados en los campos de cultivo de la sierra norte.
+              </p>
+              <strong>$480 MXN</strong>
+            </div>
+          </article>
+        </div>
+        <div id="catalogo-empty" class="empty-state" hidden>
+          No encontramos piezas con esos criterios. Ajusta los filtros o explora otra técnica mexicana.
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer mt-5">
+      <div class="container py-5">
+        <div class="row gy-4">
+          <div class="col-md-4">
+            <div class="footer-logo">MAYǑ</div>
+            <p class="mt-3">
+              Celebramos el talento de las manos mexicanas con piezas únicas y
+              memorables que cuentan historias de tradición.
+            </p>
+          </div>
+          <div class="col-6 col-md-2">
+            <div class="footer-title">Sitio</div>
+            <ul class="footer-list">
+              <li><a href="#">Inicio</a></li>
+              <li><a href="#">Artesanias</a></li>
+              <li><a href="artesanos.html">Artesanos</a></li>
+              <li><a href="#">Eventos</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="footer-title">Contacto</div>
+            <ul class="footer-list">
+              <li>Tel. 221-945-4166</li>
+              <li>Correo MAYǑ@artesaniasmx.com</li>
+              <li>Ubicación Oaxaca, México</li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <div class="footer-title">Suscríbete</div>
+            <p>Recibe novedades de nuevas piezas y colaboraciones.</p>
+            <form class="row g-2" action="#" method="post">
+              <div class="col-12">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Tu correo"
+                  aria-label="Correo electrónico"
+                />
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-warning w-100">
+                  Suscribirme
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom text-center text-md-start">
+          <div class="row align-items-center g-2">
+            <div class="col-md-6">
+              © <span id="current-year"></span> MAYǑ. Todos los derechos
+              reservados.
+            </div>
+            <div class="col-md-6 text-md-end">
+              <a class="me-3" href="#">Privacidad</a>
+              <a class="me-3" href="#">Términos</a>
+              <a href="#">Soporte</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+      integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var yearSpan = document.getElementById("current-year");
+        if (yearSpan) {
+          yearSpan.textContent = new Date().getFullYear();
+        }
+
+        var searchInput = document.getElementById("search-term");
+        var categorySelect = document.getElementById("filter-category");
+        var artisanInput = document.getElementById("filter-artisan");
+        var artisanDatalist = document.getElementById("artisan-options");
+        var regionSelect = document.getElementById("filter-region");
+        var clearButton = document.getElementById("clear-filters");
+        var grid = document.getElementById("catalogo-grid");
+        var countLabel = document.getElementById("catalogo-count");
+        var emptyState = document.getElementById("catalogo-empty");
+
+        if (!grid) {
+          return;
+        }
+
+        var productCards = Array.from(grid.querySelectorAll(".product-card"));
+        var totalProducts = productCards.length;
+
+        function getUniqueValues(key) {
+          return Array.from(
+            new Set(
+              productCards
+                .map(function (card) {
+                  return (card.dataset[key] || "").trim();
+                })
+                .filter(function (value) {
+                  return value.length > 0;
+                })
+            )
+          ).sort();
+        }
+
+        function populateSelect(selectElement, values) {
+          if (!selectElement || values.length === 0) {
+            return;
+          }
+          var fragment = document.createDocumentFragment();
+          values.forEach(function (value) {
+            var option = document.createElement("option");
+            option.value = value;
+            option.textContent = value;
+            fragment.appendChild(option);
+          });
+          selectElement.appendChild(fragment);
+        }
+
+        function populateDatalist(datalistElement, values) {
+          if (!datalistElement) {
+            return;
+          }
+          datalistElement.innerHTML = "";
+          var fragment = document.createDocumentFragment();
+          values.forEach(function (value) {
+            var option = document.createElement("option");
+            option.value = value;
+            fragment.appendChild(option);
+          });
+          datalistElement.appendChild(fragment);
+        }
+
+        var categoryOptions = getUniqueValues("category");
+        var artisanOptions = getUniqueValues("artisan");
+        var artisanOptionsLower = artisanOptions.map(function (value) {
+          return value.toLowerCase();
+        });
+        var regionOptions = getUniqueValues("region");
+
+        populateSelect(categorySelect, categoryOptions);
+        populateDatalist(artisanDatalist, artisanOptions);
+        populateSelect(regionSelect, regionOptions);
+
+        function applyFilters() {
+          var term = searchInput ? searchInput.value.trim().toLowerCase() : "";
+          var selectedCategory = categorySelect ? categorySelect.value : "all";
+          var selectedArtisanRaw = artisanInput ? artisanInput.value.trim() : "";
+          var selectedArtisan = selectedArtisanRaw.toLowerCase();
+          var selectedRegion = regionSelect ? regionSelect.value : "all";
+          var hasExactArtisan =
+            selectedArtisan.length > 0 &&
+            artisanOptionsLower.indexOf(selectedArtisan) !== -1;
+
+          var visibleCount = 0;
+
+          productCards.forEach(function (card) {
+            var name = (card.dataset.name || "").toLowerCase();
+            var description = (card.dataset.description || "").toLowerCase();
+            var category = card.dataset.category || "";
+            var categoryLower = category.toLowerCase();
+            var artisan = card.dataset.artisan || "";
+            var artisanLower = artisan.toLowerCase();
+            var region = card.dataset.region || "";
+            var regionLower = region.toLowerCase();
+
+            var matchesTerm =
+              term.length === 0 ||
+              name.indexOf(term) !== -1 ||
+              description.indexOf(term) !== -1 ||
+              categoryLower.indexOf(term) !== -1 ||
+              artisanLower.indexOf(term) !== -1 ||
+              regionLower.indexOf(term) !== -1;
+
+            var matchesCategory =
+              selectedCategory === "all" || category === selectedCategory;
+
+            var matchesArtisan =
+              !hasExactArtisan || artisanLower === selectedArtisan;
+
+            var matchesRegion =
+              selectedRegion === "all" || region === selectedRegion;
+
+            var shouldShow =
+              matchesTerm && matchesCategory && matchesArtisan && matchesRegion;
+
+            card.hidden = !shouldShow;
+
+            if (shouldShow) {
+              visibleCount++;
+            }
+          });
+
+          if (countLabel) {
+            var label =
+              visibleCount === totalProducts
+                ? "Mostrando todas las " + totalProducts + " piezas maestras"
+                : "Mostrando " + visibleCount + " de " + totalProducts + " piezas maestras";
+            countLabel.textContent = label;
+          }
+
+          if (emptyState) {
+            emptyState.hidden = visibleCount !== 0;
+          }
+        }
+
+        if (searchInput) {
+          searchInput.addEventListener("input", applyFilters);
+        }
+        if (categorySelect) {
+          categorySelect.addEventListener("change", applyFilters);
+        }
+        if (artisanInput) {
+          artisanInput.addEventListener("input", applyFilters);
+        }
+        if (regionSelect) {
+          regionSelect.addEventListener("change", applyFilters);
+        }
+        if (clearButton) {
+          clearButton.addEventListener("click", function () {
+            if (searchInput) {
+              searchInput.value = "";
+            }
+            if (categorySelect) {
+              categorySelect.value = "all";
+            }
+            if (artisanInput) {
+              artisanInput.value = "";
+            }
+            if (regionSelect) {
+              regionSelect.value = "all";
+            }
+            applyFilters();
+          });
+        }
+
+        applyFilters();
+      });
+    </script>
+  </body>
+</html>
